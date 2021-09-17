@@ -32,7 +32,7 @@ function Register() {
         try {
             let registerData = await axios.post(`${env.api}/user/register`,{firstName,lastName,userName,password})
             setUser({...user, err: '', success: registerData.data.msg})
-            history.push("/login")
+            history.push("/")
         } catch (err) {
             err.response.data.msg &&
             setUser({...user, err: err.response.data.msg, success: ''})
@@ -99,7 +99,7 @@ function Register() {
             </form>
                     {err&& showErrMsg(err)}
                     {success && showSuccessMsg(success)}
-                    <span>Already have account </span><Link to="/login" className="register"> Login</Link>
+                    <span>Already have account </span><Link to="/" className="register"> Login</Link>
         </main>
     </body>
 </>

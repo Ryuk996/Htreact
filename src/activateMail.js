@@ -18,7 +18,7 @@ function ActivationEmail() {
                 try {
                     const res = await axios.post(`${env.api}/user/activation`, {activation_token})
                     setSuccess(res.data.msg)
-                    history.push("/login")
+                    history.push("/")
                 } catch (err) {
                     err.response.data.msg && setErr(err.response.data.msg)
                 }
@@ -32,7 +32,6 @@ function ActivationEmail() {
         <body class="text-center">
         <main class="form-signin">
         <div >
-            <h1>HIOO</h1>
             {err && showErrMsg(err)}
             {success && showSuccessMsg(success)}
         </div>

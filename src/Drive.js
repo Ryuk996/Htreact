@@ -23,7 +23,7 @@ function Drive() {
             window.localStorage.removeItem('firstlogin')
             setUser({...user, err: '', success: logout.data.msg})
             // window.location.href = "/";
-            history.push('/login')
+            history.push('/')
         } catch (err) {
             err.response.data.msg &&
             setUser({...user, err: err.response.data.msg, success: ''})
