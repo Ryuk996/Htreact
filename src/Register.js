@@ -4,8 +4,16 @@ import React ,{useState} from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import env from "./settings"
+import {Link} from "react-router-dom"
+import {showErrMsg,showSuccessMsg} from "./Notifications/Notification"
 
 function Register() {
+    const initialState = {
+        err: '',
+        success: ''
+    }
+    const [user, setUser] = useState(initialState)
+    const { err, success} = user
     const [firstName, setFirstname] = useState("");
     const [lastName, setLastname] = useState("");
     const [userName, setUsername] = useState("");
@@ -14,12 +22,20 @@ function Register() {
     const history = useHistory()
     let handleSubmit = async(e) => {
         e.preventDefault()
-        console.log({firstName,userName,password,confirmPassword})
+        const isMatch = (password, confirmPassword) => {
+            if(password === confirmPassword) return true
+            return false
+        }
+        if(!isMatch(password, confirmPassword))
+            return setUser({...user, err: "Password did not match.", success: ''})
+            
         try {
-            await axios.post(`${env.api}/register`,{firstName,lastName,userName,password})
+            let registerData = await axios.post(`${env.api}/user/register`,{firstName,lastName,userName,password})
+            setUser({...user, err: '', success: registerData.data.msg})
             history.push("/login")
-        } catch (error) {
-            console.log(error)
+        } catch (err) {
+            err.response.data.msg &&
+            setUser({...user, err: err.response.data.msg, success: ''})
         }
         // await axios.post(`${env.api}/register`,{userName,password})
         
@@ -81,6 +97,9 @@ function Register() {
                 />
                 <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
             </form>
+                    {err&& showErrMsg(err)}
+                    {success && showSuccessMsg(success)}
+                    <span>Already have account </span><Link to="/login" className="register"> Login</Link>
         </main>
     </body>
 </>
