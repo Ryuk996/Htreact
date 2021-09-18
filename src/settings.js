@@ -1,6 +1,6 @@
 let getSettings = () =>{
     return {
-        api:"https://loginp.herokuapp.com/"
+        api:"https://loginp.herokuapp.com"
     }
 }
 
