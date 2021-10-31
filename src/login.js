@@ -8,6 +8,7 @@ import {useHistory} from "react-router-dom"
 import {Link} from "react-router-dom"
 import {showErrMsg,showSuccessMsg} from "./Notifications/Notification"
 import Forgotpassword from './Forgotpassword';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Login() {
     
@@ -26,8 +27,8 @@ function Login() {
         e.preventDefault()
         try {
             const loginData= await axios.post(`${env.api}/user/login`,{userName,password})
-            setUser({...user, err: '', success: loginData.data.msg})
-            window.localStorage.setItem('firstlogin',true)
+            // setUser({...user, err: '', success: loginData.data.msg})
+            window.localStorage.setItem("firstlogin",loginData.data.aToken)
 
             // alert(loginData.data.message)
             history.push("/drive")
@@ -42,25 +43,27 @@ function Login() {
     return (
         <>
         {/* <h1>login</h1> */}
-        <body class="text-center">
-            <main class="form-signin">
+        <div className="Login">
+        <div class="text-center">
+            <div class="form-signin">
                 <form onSubmit={(e) => {
                         handleSubmit(e);
                     }}>
-                    <img class="mb-4" src="https://getbootstrap.com/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57" />
-                    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                    
+                    <h1 class="h3 mb-3 fw-normal text-white">Login</h1>
                     
                     <div class="form-floating">
                         <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value={userName} onChange={e =>setUsername(e.target.value)} />
                         <label for="floatingInput">Email address</label>
                     </div>
+                    <br></br>
                     <div class="form-floating">
                         <input type="password" class="form-control" id="floatingPassword" placeholder="Password" value={password} onChange={e =>setPassword(e.target.value)} />
                         <label for="floatingPassword">Password</label>
                     </div>
     
                     <div class="checkbox mb-3">
-                        <label>
+                        <label class=" text-white">
                             <input type="checkbox" value="remember-me" /> Remember me
                             
                         </label>
@@ -71,9 +74,10 @@ function Login() {
                 </form>
                     {err&& showErrMsg(err)}
                     {success && showSuccessMsg(success)}
-                <span>New user </span><Link to="/register" className="register"> Register</Link>
-            </main>
-        </body>
+                <span class=" text-white">New user ?</span><Link to="/register" className="register"> Register</Link>
+            </div>
+        </div>
+        </div>
     </>
     )
 }

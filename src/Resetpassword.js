@@ -7,6 +7,7 @@ import axios from 'axios';
 import {useParams} from 'react-router-dom'
 import { useHistory } from "react-router-dom"
 import {showErrMsg, showSuccessMsg} from './Notifications/Notification'
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Resetpassword() {
     const initialState = {
@@ -64,6 +65,7 @@ function Resetpassword() {
                             />
                             <label for="floatingPassword">Password</label>
                         </div>
+                        <br></br>
                         <div class="form-floating">
                             <input
                                 type="password"
@@ -74,6 +76,7 @@ function Resetpassword() {
                             />
                             <label for="floatingPassword">Confirm Password</label>
                         </div>
+                        <br></br>
                         <input class="w-100 btn btn-lg btn-primary" type="submit" value="Reset"/>
                     </form>
                 </main>

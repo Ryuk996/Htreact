@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -51,4 +51,7 @@
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
   }
+} */
+.container-fluid{
+  background-color: rgb(43, 240, 247);
 }

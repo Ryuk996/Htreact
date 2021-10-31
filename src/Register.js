@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import env from "./settings"
 import {Link} from "react-router-dom"
 import {showErrMsg,showSuccessMsg} from "./Notifications/Notification"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Register() {
     const initialState = {
@@ -32,38 +33,39 @@ function Register() {
         try {
             let registerData = await axios.post(`${env.api}/user/register`,{firstName,lastName,userName,password})
             setUser({...user, err: '', success: registerData.data.msg})
-            history.push("/")
+            
         } catch (err) {
             err.response.data.msg &&
             setUser({...user, err: err.response.data.msg, success: ''})
         }
-        // await axios.post(`${env.api}/register`,{userName,password})
         
     }
     return (
         <>
-        <body class="text-center">
-        <main class="form-signin">
-           
+        <div className="Login">
+        <div class="text-center">
+        <div class="form-signin">
             <form onSubmit={(e) => {
                     handleSubmit(e);
                 }}
                 >
-                <img class="mb-4" src="https://getbootstrap.com/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"/>
-                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                <h1 class="h3 mb-3 fw-normal text-white">Register</h1>
                 
                 <div class="form-floating">
                     <input type="text" class="form-control" id="floatingInput"  placeholder="FirstName" value={firstName} onChange={e =>setFirstname(e.target.value)} />
                     <label for="floatingInput">First Name</label>
                 </div>
+                <br></br>
                 <div class="form-floating">
                     <input type="text" class="form-control" id="floatingInput"  placeholder="LastName" value={lastName} onChange={e =>setLastname(e.target.value)} />
                     <label for="floatingInput">Last Name</label>
                 </div>
+                <br></br>
                 <div class="form-floating">
                     <input type="email" class="form-control" id="floatingInput"  placeholder="name@example.com" value={userName} onChange={e =>setUsername(e.target.value)} />
                     <label for="floatingInput">Email address</label>
                 </div>
+                <br></br>
                 <div class="form-floating">
                     <input
                         type="password"
@@ -74,6 +76,7 @@ function Register() {
                     />
                     <label for="floatingPassword">Password</label>
                 </div>
+                <br></br>
                 <div class="form-floating">
                     <input
                         type="password"
@@ -86,7 +89,7 @@ function Register() {
                 </div>
 
                 <div class="checkbox mb-3">
-                    <label>
+                    <label className="text-white">
                         <input type="checkbox" value="remember-me" /> Remember me
                     </label>
                 </div>
@@ -99,9 +102,10 @@ function Register() {
             </form>
                     {err&& showErrMsg(err)}
                     {success && showSuccessMsg(success)}
-                    <span>Already have account </span><Link to="/" className="register"> Login</Link>
-        </main>
-    </body>
+                    <span class=" text-white">Already have account </span><Link to="/" className="register"> Login</Link>
+        </div>
+    </div>
+    </div>
 </>
     )
 }
