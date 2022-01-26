@@ -9,6 +9,7 @@ import {Link} from "react-router-dom"
 import {showErrMsg,showSuccessMsg} from "./Notifications/Notification"
 import Forgotpassword from './Forgotpassword';
 // import 'bootstrap/dist/css/bootstrap.min.css';
+import { Email, LockOpen } from '@mui/icons-material';
 
 function Login() {
     
@@ -74,12 +75,17 @@ function Login() {
                 </form>
                     {err&& showErrMsg(err)}
                     {success && showSuccessMsg(success)}
-                <span class=" text-white">New user ?</span><Link to="/register" className="register"> Register</Link>
-            </div>
+                    <div className="credential">                                                   
+                        <h6>Demo credential</h6>
+                        <h6><Email className="credicon"/>: lucifer99@gmail.com</h6>
+                        <h6><LockOpen className="credicon"/>: Deckstar</h6>
+                    </div>
+                <span class=" text-white">New user ?</span><Link to="/register"  className="register"> Register</Link>
+            </div> 
         </div>
         </div>
     </>
-    )
+    ) 
 }
 
 export default Login

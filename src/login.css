@@ -13,6 +13,16 @@
     /* margin-bottom: 40% !important; */
     
   }
+  .credential{
+    border: 2px solid tomato;
+    padding: 2px;
+    font-size: 1.3rem;
+    color: tomato;
+  }
+  .credicon{
+    font-size: 1.2rem !important;
+    padding-top: 1px !important;
+  }
   /* .text-center{
     background: aqua;
     width: 100%;
